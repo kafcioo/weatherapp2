@@ -1,0 +1,12 @@
+<h1>Weather App</h1>
+
+
+  <ul>
+    <li *ngFor="let w of weather">
+      <a routerLink="/citydetails/{{w.name}}">{{ w.name }}</a>
+      <ul>
+         Temperature: {{w.main.temp}}
+
+      </ul>
+    </li>
+  </ul>
