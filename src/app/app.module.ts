@@ -1,25 +1,31 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserModule } from '@angular/platform-browser/';
 import { NgModule } from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { GraphComponent } from './graph/graph.component';
 import { TableComponent } from './table/table.component';
-import { MenuComponent } from './menu/menu.component';
 import { HttpClientModule } from '@angular/common/http';
-import { CitydetailsComponent } from './citydetails/citydetails.component';
+
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import {MatSortModule, MatTableModule} from '@angular/material/';
+
 @NgModule({
   declarations: [
     AppComponent,
-    GraphComponent,
-    TableComponent,
-    MenuComponent,
-    CitydetailsComponent
+    TableComponent
+    
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    MatSortModule,
+    MatTableModule,
+    BrowserAnimationsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

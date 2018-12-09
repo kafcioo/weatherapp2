@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { WeatherdataService } from '../weatherdata.service';
-import { Observable } from 'rxjs';
+import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 
 @Component({
   selector: 'app-table',
@@ -9,16 +9,35 @@ import { Observable } from 'rxjs';
 })
 export class TableComponent implements OnInit {
 
-//weather:any;
-  constructor(private weather:WeatherdataService) { }
+  displayedColumns = ['name', 'temperature', 'Longitude', 'Latitude', 'Humidity', 'Pressure','Wind-speed',
+    'Wind-direction', 'Clouds'];
+  dataSource: MatTableDataSource<weatherData>;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+ 
+  constructor(private weather:WeatherdataService) {
 
-  ngOnInit() {
-    this.weather.getWeatherData().subscribe(response=>{
-      this.weather=response.list;
-      console.log(this.weather)
-    }
-    //weather => this.weather$ = weather
-  )
+  }
+ 
+
+  applyFilter(filterValue: string) {
+    filterValue = filterValue.trim(); // Remove whitespace
+    filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
+    this.dataSource.filter = filterValue;
   }
 
+  ngOnInit() {
+    this.weather.getWeatherData().subscribe(response => {
+      this.dataSource = new MatTableDataSource(response.list);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+      console.log(response.list)
+
+    });
+  }
+
+
+}
+export interface weatherData {
+  name: string;
 }

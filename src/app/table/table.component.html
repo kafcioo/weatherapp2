@@ -1,12 +1,74 @@
-<h1>Weather App</h1>
+<h1 style="text-align:center">Weather App</h1>
+<div class="search-box">
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search by City name">
+  </mat-form-field>
+</div>
+
+<div class="example-container mat-elevation-z8">
+
+  <mat-table [dataSource]="dataSource" matSort>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.name}} </mat-cell>
+    </ng-container>
+
+    <!-- Temperature Column -->
+    <ng-container matColumnDef="temperature">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Temperature </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.main.temp}} </mat-cell>
+    </ng-container>
+
+    <!-- Longitude Column -->
+    <ng-container matColumnDef="Longitude">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Longitude </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.coord.Lon}} </mat-cell>
+    </ng-container>
+
+    <!-- Latitude Column -->
+    <ng-container matColumnDef="Latitude">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Latitude </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.coord.Lat}} </mat-cell>
+    </ng-container>
+
+    <!-- Pressure Column -->
+    <ng-container matColumnDef="Pressure">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Pressure </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.main.pressure}} </mat-cell>
+    </ng-container>
+
+    <!-- Humidity Column -->
+    <ng-container matColumnDef="Humidity">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Humidity </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.main.humidity}} </mat-cell>
+    </ng-container>
+
+    <!-- Wind-speed Column -->
+    <ng-container matColumnDef="Wind-speed">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Wind-speed </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.wind.speed}} </mat-cell>
+    </ng-container>
+
+    <!-- Wind-direction Column -->
+    <ng-container matColumnDef="Wind-direction">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Wind-direction </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.wind.deg}} </mat-cell>
+    </ng-container>
+
+    <!-- Clouds Column -->
+    <ng-container matColumnDef="Clouds">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Clouds </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.weather[0].description}} </mat-cell>
+    </ng-container>
 
 
-  <ul>
-    <li *ngFor="let w of weather">
-      <a routerLink="/citydetails/{{w.name}}">{{ w.name }}</a>
-      <ul>
-         Temperature: {{w.main.temp}}
 
-      </ul>
-    </li>
-  </ul>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;">
+    </mat-row>
+  </mat-table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]"></mat-paginator>
+</div>
