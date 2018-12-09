@@ -31,7 +31,7 @@ export class TableComponent implements OnInit {
       this.dataSource = new MatTableDataSource(response.list);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-      console.log(response.list)
+   
 
     });
   }
