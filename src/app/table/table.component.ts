@@ -11,14 +11,14 @@ export class TableComponent implements OnInit {
 
   displayedColumns = ['name', 'temperature', 'Longitude', 'Latitude', 'Humidity', 'Pressure','Wind-speed',
     'Wind-direction', 'Clouds'];
-  dataSource: MatTableDataSource<weatherData>;
+ 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
  
-  constructor(private weather:WeatherdataService) {
-
+  constructor(private weather: WeatherdataService) {
+   
   }
- 
+  public dataSource;
 
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
@@ -31,8 +31,6 @@ export class TableComponent implements OnInit {
       this.dataSource = new MatTableDataSource(response.list);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-   
-
     });
   }
 

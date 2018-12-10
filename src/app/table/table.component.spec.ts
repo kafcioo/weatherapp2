@@ -10,7 +10,7 @@ describe('TableComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ TableComponent ]
     })
-    .compileComponents();
+    .compileComponents();9i
   }));
 
   beforeEach(() => {
@@ -20,6 +20,15 @@ describe('TableComponent', () => {
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(TableComponent).toBeTruthy();
   });
+
+  it('should render title in a h1 tag', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('h1').textContent).toContain('Weather app');
+
+
 });
+
