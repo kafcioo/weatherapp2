@@ -4,7 +4,7 @@ import { WeatherdataService } from './weatherdata.service';
 
 describe('WeatherdataService', () => {
   let service: WeatherdataService;
-  let HttpMock: HttpClientTestingModule;
+  let HttpMock: HttpTestingController;
   
   beforeEach(() => TestBed.configureTestingModule({
    imports: [HttpClientTestingModule]
